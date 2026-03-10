@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #1B6B3A;
+  --primary-dark: #154a2a;
+  --primary-light: #e8f5ee;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: #1a1a1a;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-700 text-white px-5 py-2.5 rounded-lg font-semibold text-sm flex items-center gap-2 hover:bg-primary-800 transition-all duration-200;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-700 text-primary-700 px-5 py-2.5 rounded-lg font-semibold text-sm flex items-center gap-2 hover:bg-primary-50 transition-all duration-200;
+  }
+
+  .card-shadow {
+    @apply shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold text-primary-700 font-heading;
+  }
+
+  .section-subtitle {
+    @apply text-gray-500 text-sm mt-2;
+  }
+}
