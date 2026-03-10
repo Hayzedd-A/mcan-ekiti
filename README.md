@@ -24,16 +24,7 @@ A complete Next.js 14 website for the Muslim Corpers' Association of Nigeria (MC
 
 ## Getting Started
 
-```bash
-# 1. Install dependencies
-npm install
 
-# 2. Run the dev server
-npm run dev
-
-# 3. Open in browser
-# http://localhost:3000
-```
 
 ## Project Structure
 
@@ -63,14 +54,10 @@ mcan-ekiti/
 ## Customisation
 
 ### 1. Update Real Data
-Edit `lib/data.ts` to add:
-- Real project images and descriptions
-- Actual prayer times (or connect an API like Aladhan)
-- Real executive names, photos, and titles
-- Real event dates and locations
+
 
 ### 2. Replace Images
-Replace placeholder Unsplash images in `lib/data.ts` with your actual project photos.
+
 
 ### 3. Update Contact Info
 Phone numbers and email in `app/contact/page.tsx` and footer.
