@@ -1,0 +1,33 @@
+** Intro **
+This is a website for the Muslim corpers association of Nigeria.
+
+The website has some main features which are, list of projects, prayer times, events, lodges, galery, each year executives board, new member registration, receive of donations, 
+The website will be having the public pages as available already and also having admin page where all the data will be managed.
+
+Each project will have this properties 
+title, description, projected amount, amount raised, status, location, projected date, 
+
+prayer times will be integrated with any prayer time api
+
+Each events will have these properties
+date, title, description, status, location, image banner, cost, occurence 
+
+executives will have these properties (grouped in years)
+profile pic, name, position, title,
+
+lodges will be having these properties
+title, description, status, location
+
+news will be having these properties
+title, short-description, story, category
+
+
+The donation only display the account number and details, no payment integration for now.
+
+the member registration will only keep their record for now, no extra features on that.
+
+implement and incoporate the admin and backend with the frontend, establishing all the features.
+the admin features:
+** crud operation on projects, events, lodges, news, galery and executives, add and modify account details, view the list of registered members, 
+use mongodb for data storage, and cloudinary for images.
+maintain system design and theme.

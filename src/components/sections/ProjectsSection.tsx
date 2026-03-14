@@ -1,12 +1,16 @@
 import Link from "next/link";
 import ProjectCard from "@/components/ui/ProjectCard";
-import { projects } from "@/lib/data";
+import { IProject } from "@/models/Project";
 
 interface ProjectsSectionProps {
+  projects: IProject[];
   showAll?: boolean;
 }
 
-export default function ProjectsSection({ showAll = false }: ProjectsSectionProps) {
+export default function ProjectsSection({
+  projects,
+  showAll = false,
+}: ProjectsSectionProps) {
   const displayed = showAll ? projects : projects.slice(0, 6);
 
   return (
@@ -26,8 +30,8 @@ export default function ProjectsSection({ showAll = false }: ProjectsSectionProp
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {displayed.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+        {displayed.map((project: IProject) => (
+          <ProjectCard key={project._id} project={project} />
         ))}
       </div>
 

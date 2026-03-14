@@ -1,54 +1,10 @@
 "use client";
+import { MapPin, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
 
-import { MapPin } from "lucide-react";
-
-const prayerTimes = [
-  { name: "Fajr", time: "0:00 AM", icon: "☀️" },
-  { name: "Sunrise", time: "0:00 AM", icon: "🌅" },
-  { name: "Dhur", time: "0:00 PM", icon: "☀" },
-  { name: "Asr", time: "0:00 PM", icon: "🌤" },
-  { name: "Maghrib", time: "0:00 PM", icon: "🌙" },
-  { name: "Isha'a", time: "0:00 PM", icon: "🌙" },
-];
-
-// Islamic geometric SVG pattern
-function IslamicPattern() {
-  return (
-    <svg
-      width="180"
-      height="180"
-      viewBox="0 0 200 200"
-      fill="none"
-      className="absolute right-4 top-0 opacity-30"
-    >
-      <circle cx="100" cy="100" r="90" stroke="#1B6B3A" strokeWidth="1.5" fill="none" />
-      <circle cx="100" cy="100" r="70" stroke="#1B6B3A" strokeWidth="1" fill="none" />
-      <circle cx="100" cy="100" r="50" stroke="#1B6B3A" strokeWidth="1" fill="none" />
-      {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
-        const rad = (angle * Math.PI) / 180;
-        const x1 = 100 + 90 * Math.cos(rad);
-        const y1 = 100 + 90 * Math.sin(rad);
-        const x2 = 100 - 90 * Math.cos(rad);
-        const y2 = 100 - 90 * Math.sin(rad);
-        return (
-          <line key={angle} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#1B6B3A" strokeWidth="0.5" opacity="0.6" />
-        );
-      })}
-      {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle) => {
-        const rad = (angle * Math.PI) / 180;
-        const x = 100 + 70 * Math.cos(rad);
-        const y = 100 + 70 * Math.sin(rad);
-        return <circle key={`dot-${angle}`} cx={x} cy={y} r="2" fill="#1B6B3A" opacity="0.5" />;
-      })}
-      <polygon
-        points="100,30 118,85 175,85 129,118 147,173 100,140 53,173 71,118 25,85 82,85"
-        stroke="#1B6B3A"
-        strokeWidth="1"
-        fill="none"
-        opacity="0.4"
-      />
-    </svg>
-  );
+interface PrayerTime {
+  name: string;
+  time: string;
 }
 
 // Prayer icon SVGs
@@ -78,7 +34,6 @@ function PrayerIcon({ name }: { name: string }) {
       </svg>
     );
   }
-  // Maghrib / Isha
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-[#1B6B3A]">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -86,30 +41,67 @@ function PrayerIcon({ name }: { name: string }) {
   );
 }
 
-export default function PrayerTimesSection() {
+function IslamicPattern() {
+  return (
+    <svg width="180" height="180" viewBox="0 0 200 200" fill="none" className="absolute right-4 top-0 opacity-30">
+      <circle cx="100" cy="100" r="90" stroke="#1B6B3A" strokeWidth="1.5" fill="none" />
+      <circle cx="100" cy="100" r="70" stroke="#1B6B3A" strokeWidth="1" fill="none" />
+      <circle cx="100" cy="100" r="50" stroke="#1B6B3A" strokeWidth="1" fill="none" />
+      {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
+        const rad = (angle * Math.PI) / 180;
+        const x1 = 100 + 90 * Math.cos(rad);
+        const y1 = 100 + 90 * Math.sin(rad);
+        const x2 = 100 - 90 * Math.cos(rad);
+        const y2 = 100 - 90 * Math.sin(rad);
+        return <line key={angle} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#1B6B3A" strokeWidth="0.5" opacity="0.6" />;
+      })}
+      <polygon points="100,30 118,85 175,85 129,118 147,173 100,140 53,173 71,118 25,85 82,85" stroke="#1B6B3A" strokeWidth="1" fill="none" opacity="0.4" />
+    </svg>
+  );
+}
+
+export default function PrayerTimesSection({ prayers }: { prayers: PrayerTime[] }) {
+  const [currentDateTime, setCurrentDateTime] = useState("");
+
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString("en-NG", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+      const dateString = now.toLocaleDateString("en-NG", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      setCurrentDateTime(`${dateString}, ${timeString}`);
+    };
+
+    updateDateTime();
+    const interval = setInterval(updateDateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-8 max-w-7xl mx-auto">
-      <div
-        className="relative rounded-2xl p-6 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #f8fdf9 0%, #e8f5ee 100%)" }}
-      >
+      <div className="relative rounded-2xl p-6 overflow-hidden" style={{ background: "linear-gradient(135deg, #f8fdf9 0%, #e8f5ee 100%)" }}>
         <IslamicPattern />
-
         <div className="relative z-10">
-          <h3
-            className="text-[#1B6B3A] font-semibold text-base mb-1"
-            style={{ fontFamily: "Outfit, sans-serif" }}
-          >
+          <h3 className="text-[#1B6B3A] font-semibold text-base mb-1" style={{ fontFamily: "Outfit, sans-serif" }}>
             Prayer Times
           </h3>
           <div className="flex items-center gap-1 text-gray-600 text-sm mb-6">
             <MapPin size={14} className="text-[#1B6B3A]" />
-            <span className="font-medium">Ado-ekiti</span>
+            <span className="font-medium">Ado-Ekiti</span>
           </div>
-
-          {/* Prayer times grid */}
+          <div className="flex items-center gap-1 text-gray-600 text-sm mb-6">
+            <Clock size={14} className="text-[#1B6B3A]" />
+            <span className="font-medium text-xs">{currentDateTime}</span>
+          </div>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
-            {prayerTimes.map((prayer) => (
+            {prayers.map((prayer) => (
               <div key={prayer.name} className="flex flex-col items-center gap-1">
                 <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
                   <PrayerIcon name={prayer.name} />

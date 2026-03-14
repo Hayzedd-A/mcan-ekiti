@@ -1,16 +1,22 @@
 "use client";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { events } from "@/lib/data";
 import Image from "next/image";
+import { IEvent } from "@/models/Event";
 
-export default function EventsSection() {
+interface EventsSectionProps {
+  events: IEvent[];
+}
+
+export default function EventsSection({ events }: EventsSectionProps) {
+  const upcomingEvents = events.filter((event) => event.status === "Upcoming");
   const [slide, setSlide] = useState(0);
-  const totalSlides = 3;
+  const [currentSlide, setCurrentSlide] = useState(upcomingEvents[slide]);
+  const totalSlides = upcomingEvents.length;
 
-  const upcomingImage =
-    "https://images.unsplash.com/photo-1591604021695-0c69b7c05981?w=400&q=80";
+  useEffect(() => {
+    setCurrentSlide(upcomingEvents[slide]);
+  }, [slide]);
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-12 max-w-7xl mx-auto">
@@ -31,13 +37,17 @@ export default function EventsSection() {
         <div className="lg:col-span-2 space-y-2">
           {events.map((event) => (
             <div
-              key={event.id}
+              key={event._id}
               className="flex items-center gap-4 bg-white border border-gray-100 rounded-xl px-4 py-3 hover:border-[#1B6B3A]/30 transition-colors"
             >
               {/* Date */}
               <div className="flex-shrink-0 w-16">
-                <div className="text-xs text-gray-500">{event.month} {event.day}</div>
-                <div className="text-xs text-gray-400">{event.dayOfWeek}</div>
+                <div className="text-xs text-gray-500">
+                  {new Date(event.date).toDateString()}
+                </div>
+                {/* <div className="text-xs text-gray-400">
+                  {new Date(event.date).getDay()}
+                </div> */}
               </div>
 
               {/* Divider */}
@@ -49,7 +59,7 @@ export default function EventsSection() {
                   {event.title}
                 </div>
                 <div className="text-xs text-gray-400 truncate">
-                  {event.time}, {event.location}
+                  {event.location}
                 </div>
               </div>
 
@@ -65,7 +75,9 @@ export default function EventsSection() {
         <div className="lg:col-span-1">
           <div className="bg-white border border-gray-100 rounded-xl overflow-hidden h-full">
             <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
-              <span className="text-sm font-semibold text-gray-700">Upcoming Events</span>
+              <span className="text-sm font-semibold text-gray-700">
+                Upcoming Events
+              </span>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setSlide(Math.max(0, slide - 1))}
@@ -84,18 +96,21 @@ export default function EventsSection() {
                 </button>
               </div>
             </div>
-
-            <div className="relative h-44 bg-gray-100">
-              <Image
-                src={upcomingImage}
-                alt="Upcoming Event"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="px-4 py-3">
-              <p className="text-xs text-gray-500">Just the title of the event here</p>
-            </div>
+            {currentSlide && (
+              <>
+                <div className="relative h-44 bg-gray-100">
+                  <Image
+                    src={currentSlide?.imageBanner || ""}
+                    alt="Upcoming Event"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="px-4 py-3">
+                  <p className="text-xs text-gray-500">{currentSlide?.title}</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
