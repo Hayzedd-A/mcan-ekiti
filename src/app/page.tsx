@@ -52,7 +52,6 @@ async function getProjects(): Promise<IProject[]> {
       });
       if (!res.ok) throw new Error("Failed");
       const data = await res.json();
-      console.log("Projects: ", data);
       return data.data ?? [];
     } catch (error) {
       console.log("Failed to fetch projects: ", error);
@@ -75,7 +74,6 @@ async function getEvents(): Promise<IEvent[]> {
       });
       if (!res.ok) throw new Error("Failed");
       const data = await res.json();
-      console.log("Events: ", data);
       return data.data ?? [];
     } catch (error) {
       console.log("Failed to fetch events: ", error);

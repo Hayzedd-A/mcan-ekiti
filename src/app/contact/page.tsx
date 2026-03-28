@@ -17,13 +17,14 @@ const contactItems = [
   {
     icon: Mail,
     label: "Email Us",
-    value: "example@mcanekiti.org",
-    href: "mailto:example@mcanekiti.org",
+    value: "mcanekitistateado@gmail.com",
+    href: "mailto:mcanekitistateado@gmail.com",
   },
   {
     icon: MapPin,
     label: "Visit Us",
-    value: "MCAN Ekiti secretariat, Ansarudeen Mosque, Atikanakan, Ado ekiti, Ekiti",
+    value:
+      "MCAN Ekiti secretariat, Ansarudeen Mosque, Atikanakan, Ado ekiti, Ekiti",
     href: "https://maps.google.com",
   },
 ];

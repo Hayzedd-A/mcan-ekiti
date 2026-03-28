@@ -12,7 +12,6 @@ export async function GET(_req: NextRequest) {
     const dateStr = `${today.getDate().toString().padStart(2, "0")}-${(today.getMonth() + 1).toString().padStart(2, "0")}-${today.getFullYear()}`;
 
     const url = `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${PRAYER_LAT}&longitude=${PRAYER_LNG}&method=${PRAYER_METHOD}`;
-    console.log("prayer url: ", url)
     const res = await fetch(url, { next: { revalidate: 86400 } });
 
     if (!res.ok) throw new Error("Aladhan API error");
