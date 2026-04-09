@@ -1,8 +1,5 @@
+import { PRAYER_LAT, PRAYER_LNG, PRAYER_METHOD } from "@/config/constants";
 import { NextRequest, NextResponse } from "next/server";
-
-const PRAYER_LAT = process.env.PRAYER_LAT ?? "7.62";
-const PRAYER_LNG = process.env.PRAYER_LNG ?? "5.22";
-const PRAYER_METHOD = process.env.PRAYER_METHOD ?? "2";
 
 export const revalidate = 86400; // cache for 24 hours
 
@@ -31,6 +28,9 @@ export async function GET(_req: NextRequest) {
     return NextResponse.json({ success: true, date: dateStr, prayers });
   } catch (err) {
     console.error("Prayer times error:", err);
-    return NextResponse.json({ error: "Failed to fetch prayer times" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch prayer times" },
+      { status: 500 },
+    );
   }
 }

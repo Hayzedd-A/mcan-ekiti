@@ -3,6 +3,7 @@ import connectDB from "@/lib/mongodb";
 import Admin from "@/models/Admin";
 import { signToken } from "@/lib/auth";
 import bcrypt from "bcryptjs";
+import { NODE_ENV } from "@/config/constants";
 
 export async function POST(req: NextRequest) {
   try {
@@ -43,7 +44,7 @@ export async function POST(req: NextRequest) {
     });
     response.cookies.set("admin_token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: NODE_ENV === "production",
       sameSite: "lax",
       maxAge: 60 * 60 * 24 * 7, // 7 days
       path: "/",

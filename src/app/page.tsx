@@ -6,6 +6,7 @@ import DonationCTA from "@/components/sections/DonationCTA";
 
 import { IProject } from "@/models/Project";
 import { IEvent } from "@/models/Event";
+import { NEXT_PUBLIC_BASE_URL } from "@/config/constants";
 
 interface PrayerTime {
   name: string;
@@ -13,8 +14,6 @@ interface PrayerTime {
 }
 
 async function getPrayerTimes(): Promise<PrayerTime[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:5321";
-
   const fallback: PrayerTime[] = [
     { name: "Fajr", time: "--:--" },
     { name: "Sunrise", time: "--:--" },
@@ -26,7 +25,7 @@ async function getPrayerTimes(): Promise<PrayerTime[]> {
 
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      const res = await fetch(`${baseUrl}/api/prayer-times`, {
+      const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/prayer-times`, {
         next: { revalidate: 86400 },
       });
       if (!res.ok) throw new Error("Failed");
@@ -42,12 +41,11 @@ async function getPrayerTimes(): Promise<PrayerTime[]> {
 }
 
 async function getProjects(): Promise<IProject[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:5321";
   const fallback: IProject[] = [];
 
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      const res = await fetch(`${baseUrl}/api/projects`, {
+      const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/projects`, {
         next: { revalidate: 3600 },
       });
       if (!res.ok) throw new Error("Failed");
@@ -64,12 +62,11 @@ async function getProjects(): Promise<IProject[]> {
 }
 
 async function getEvents(): Promise<IEvent[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:5321";
   const fallback: IEvent[] = [];
 
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
-      const res = await fetch(`${baseUrl}/api/events`, {
+      const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/events`, {
         next: { revalidate: 3600 },
       });
       if (!res.ok) throw new Error("Failed");

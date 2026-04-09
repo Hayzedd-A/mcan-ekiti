@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { IGallery } from "@/models/Gallery";
+import { NEXT_PUBLIC_BASE_URL } from "@/config/constants";
 
 async function getGallery(): Promise<IGallery[]> {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:5321"}/api/gallery`,
-      { cache: "no-store" }
-    );
+    const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/gallery`, {
+      cache: "no-store",
+    });
     if (!res.ok) return [];
     const data = await res.json();
     return data.data ?? [];
@@ -22,10 +22,15 @@ export default async function GalleryPage() {
     <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900" style={{ fontFamily: "Outfit, sans-serif" }}>
+          <h1
+            className="text-3xl font-bold text-gray-900"
+            style={{ fontFamily: "Outfit, sans-serif" }}
+          >
             Gallery
           </h1>
-          <p className="text-gray-500 text-sm mt-1">Moments from our activities and programs</p>
+          <p className="text-gray-500 text-sm mt-1">
+            Moments from our activities and programs
+          </p>
         </div>
 
         {images.length === 0 ? (
@@ -33,7 +38,10 @@ export default async function GalleryPage() {
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {images.map((img) => (
-              <div key={img._id} className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer">
+              <div
+                key={img._id}
+                className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer"
+              >
                 <Image
                   src={img.image}
                   alt={img.caption ?? "Gallery image"}
