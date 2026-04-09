@@ -12,7 +12,8 @@ export async function GET() {
 
 export async function PUT(req: NextRequest) {
   const admin = getAdminFromRequest(req);
-  if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!admin)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   await connectDB();
   const { bankName, accountName, accountNumber } = await req.json();
@@ -24,7 +25,7 @@ export async function PUT(req: NextRequest) {
   const account = await DonationAccountModel.findOneAndUpdate(
     {},
     { bankName, accountName, accountNumber },
-    { upsert: true, new: true }
+    { upsert: true, returnDocument: "after" },
   );
 
   return NextResponse.json({ success: true, data: account });
