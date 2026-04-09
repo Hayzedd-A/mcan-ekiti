@@ -5,8 +5,19 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import {
-  LayoutDashboard, FolderOpen, Calendar, Users, Building2,
-  Newspaper, ImageIcon, UserCheck, Heart, LogOut, Menu, X,
+  LayoutDashboard,
+  FolderOpen,
+  Calendar,
+  Users,
+  Building2,
+  Newspaper,
+  ImageIcon,
+  UserCheck,
+  Heart,
+  LogOut,
+  Menu,
+  X,
+  Settings as SettingsIcon,
 } from "lucide-react";
 
 const navLinks = [
@@ -19,6 +30,7 @@ const navLinks = [
   { href: "/admin/gallery", label: "Gallery", icon: ImageIcon },
   { href: "/admin/members", label: "Members", icon: UserCheck },
   { href: "/admin/donation-account", label: "Donation Account", icon: Heart },
+  { href: "/admin/contact-info", label: "Contact Info", icon: SettingsIcon },
 ];
 
 function Sidebar({ onClose }: { onClose?: () => void }) {
@@ -34,13 +46,27 @@ function Sidebar({ onClose }: { onClose?: () => void }) {
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center gap-3 px-6 py-5 border-b border-white/10">
-        <Image src="/images/mcan-logo.webp" alt="MCAN" width={32} height={32} className="rounded-full" />
+        <Image
+          src="/images/mcan-logo.webp"
+          alt="MCAN"
+          width={32}
+          height={32}
+          className="rounded-full"
+        />
         <div>
-          <p className="text-white font-bold text-sm" style={{ fontFamily: "Outfit, sans-serif" }}>MCAN Ekiti</p>
+          <p
+            className="text-white font-bold text-sm"
+            style={{ fontFamily: "Outfit, sans-serif" }}
+          >
+            MCAN Ekiti
+          </p>
           <p className="text-white/50 text-xs">Admin Portal</p>
         </div>
         {onClose && (
-          <button onClick={onClose} className="ml-auto text-white/60 hover:text-white">
+          <button
+            onClick={onClose}
+            className="ml-auto text-white/60 hover:text-white"
+          >
             <X size={18} />
           </button>
         )}
@@ -80,7 +106,11 @@ function Sidebar({ onClose }: { onClose?: () => void }) {
   );
 }
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -88,7 +118,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Desktop Sidebar */}
       <aside
         className="hidden md:flex md:flex-col md:w-60 flex-shrink-0"
-        style={{ background: "linear-gradient(180deg, #0f3d22 0%, #1B6B3A 100%)" }}
+        style={{
+          background: "linear-gradient(180deg, #0f3d22 0%, #1B6B3A 100%)",
+        }}
       >
         <Sidebar />
       </aside>
@@ -96,10 +128,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Mobile Sidebar Overlay */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} />
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={() => setMobileOpen(false)}
+          />
           <aside
             className="absolute left-0 top-0 h-full w-60"
-            style={{ background: "linear-gradient(180deg, #0f3d22 0%, #1B6B3A 100%)" }}
+            style={{
+              background: "linear-gradient(180deg, #0f3d22 0%, #1B6B3A 100%)",
+            }}
           >
             <Sidebar onClose={() => setMobileOpen(false)} />
           </aside>
@@ -132,9 +169,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6">
-          {children}
-        </main>
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6">{children}</main>
       </div>
     </div>
   );

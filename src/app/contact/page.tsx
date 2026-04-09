@@ -1,35 +1,52 @@
 import Image from "next/image";
 import { Phone, MessageCircle, Mail, MapPin, ArrowRight } from "lucide-react";
+import { NEXT_PUBLIC_BASE_URL } from "@/config/constants";
 
-const contactItems = [
-  {
-    icon: Phone,
-    label: "Call Us",
-    value: "+234 800 000 0000",
-    href: "tel:+2348000000000",
-  },
-  {
-    icon: MessageCircle,
-    label: "WhatsApp Us",
-    value: "+234 800 000 0000",
-    href: "https://wa.me/2348000000000",
-  },
-  {
-    icon: Mail,
-    label: "Email Us",
-    value: "mcanekitistateado@gmail.com",
-    href: "mailto:mcanekitistateado@gmail.com",
-  },
-  {
-    icon: MapPin,
-    label: "Visit Us",
-    value:
-      "MCAN Ekiti secretariat, Ansarudeen Mosque, Atikanakan, Ado ekiti, Ekiti",
-    href: "https://maps.google.com",
-  },
-];
+async function getSettings() {
+  try {
+    const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/contact`, {
+      cache: "no-store",
+    });
+    const data = await res.json();
+    return data.success ? data.data : null;
+  } catch (error) {
+    console.error("Failed to fetch settings:", error);
+    return null;
+  }
+}
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const settings = await getSettings();
+
+  const contactItems = [
+    {
+      icon: Phone,
+      label: "Call Us",
+      value: settings?.phone || "+234 800 000 0000",
+      href: `tel:${(settings?.phone || "+2348000000000").replace(/\s/g, "")}`,
+    },
+    {
+      icon: MessageCircle,
+      label: "WhatsApp Us",
+      value: settings?.whatsapp || "+234 800 000 0000",
+      href: `https://wa.me/${(settings?.whatsapp || "2348000000000").replace(/\+/g, "").replace(/\s/g, "")}`,
+    },
+    {
+      icon: Mail,
+      label: "Email Us",
+      value: settings?.email || "mcanekitistateado@gmail.com",
+      href: `mailto:${settings?.email || "mcanekitistateado@gmail.com"}`,
+    },
+    {
+      icon: MapPin,
+      label: "Visit Us",
+      value:
+        settings?.location ||
+        "MCAN Ekiti secretariat, Ansarudeen Mosque, Atikanakan, Ado ekiti, Ekiti",
+      href: settings?.mapsUrl || "https://maps.google.com",
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
