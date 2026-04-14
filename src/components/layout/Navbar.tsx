@@ -198,8 +198,11 @@ export default function Navbar() {
       >
         <GeometricDecor />
 
-        {/* Top bar inside overlay */}
-        <div className="flex items-center justify-between px-6 h-16 border-b border-white/10">
+        {/* Full-height flex wrapper */}
+        <div className="flex flex-col h-full">
+
+          {/* Top bar inside overlay */}
+          <div className="flex items-center justify-between px-6 h-16 border-b border-white/10">
           <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
             <Image src="/images/mcan-logo.webp" alt="MCAN Logo" width={32} height={32} className="rounded-full object-cover brightness-110" />
             <span className="font-bold text-white text-sm tracking-wide" style={{ fontFamily: "Outfit, sans-serif" }}>MCAN EKITI</span>
@@ -210,7 +213,7 @@ export default function Navbar() {
         </div>
 
         {/* Nav Links — large, staggered */}
-        <nav className="px-8 pt-8 pb-6 flex flex-col gap-1">
+        <nav className="px-8 pt-8 pb-6 flex flex-col gap-1 overflow-y-auto max-h-[calc(100dvh-64px-140px)]">
           {navLinks.map((link, i) => (
             <Link
               key={link.href}
@@ -240,7 +243,7 @@ export default function Navbar() {
 
         {/* Bottom CTA */}
         <div
-          className="absolute bottom-0 left-0 right-0 px-8 py-8 border-t border-white/10"
+          className="px-8 py-8 border-t border-white/10 mt-auto"
           style={{
             opacity: mobileOpen ? 1 : 0,
             transform: mobileOpen ? "translateY(0)" : "translateY(16px)",
@@ -270,6 +273,8 @@ export default function Navbar() {
             Serving Islam Through the Nation
           </p>
         </div>
+
+        </div>{/* end flex wrapper */}
       </div>
     </>
   );
