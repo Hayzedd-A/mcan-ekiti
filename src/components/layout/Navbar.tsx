@@ -14,7 +14,6 @@ const navLinks = [
   { label: "News", href: "/news" },
   { label: "Executives", href: "/executives" },
   { label: "Events", href: "/events" },
-  { label: "Gallery", href: "/gallery" },
 ];
 
 const desktopLinks = [
@@ -29,7 +28,6 @@ const desktopLinks = [
 const moreLinks = [
   { label: "Executives", href: "/executives" },
   { label: "Events", href: "/events" },
-  { label: "Gallery", href: "/gallery" },
 ];
 
 // Animated hamburger — 3 bars morph into X

@@ -10,7 +10,6 @@ const footerLinks = {
   col2: [
     { label: "Projects", href: "/projects" },
     { label: "Executives", href: "/executives" },
-    { label: "Gallery", href: "/gallery" },
   ],
   col3: [
     { label: "Lodges", href: "/lodges" },
@@ -55,7 +54,6 @@ export default function Footer() {
                 { label: "Executives", href: "/executives" },
                 { label: "Events", href: "/events" },
                 { label: "News", href: "/news" },
-                { label: "Gallery", href: "/gallery" },
               ].map((link) => (
                 <Link
                   key={link.href}
