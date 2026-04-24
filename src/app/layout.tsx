@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "MCAN Ekiti State Chapter",
   description:
     "Muslim Corpers' Association of Nigeria – Ekiti State Chapter. Serving Islam through the nation.",
+  icons: {
+    icon: "/images/mcan-logo.webp",
+  },
 };
 
 export default function RootLayout({
