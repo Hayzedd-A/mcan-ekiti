@@ -119,7 +119,7 @@ export default async function AboutPage() {
               <div className="absolute inset-0 bg-green-600 rounded-[2rem] rotate-3 opacity-10 group-hover:rotate-6 transition-transform duration-500"></div>
               <div className="relative bg-white p-8 rounded-[2rem] shadow-2xl border border-gray-100 flex items-center justify-center aspect-square lg:aspect-auto lg:h-[400px]">
                 <Image
-                  src="/images/mcan-logo.webp"
+                  src="/images/image.png"
                   alt="MCAN Logo"
                   width={300}
                   height={300}
