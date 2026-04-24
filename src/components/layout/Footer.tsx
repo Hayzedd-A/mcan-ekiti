@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Instagram, Facebook } from "lucide-react";
 
 const footerLinks = {
   col1: [
@@ -17,6 +18,14 @@ const footerLinks = {
     { label: "Events", href: "/events" },
   ],
 };
+
+const developers = [
+  { name: "Adebayo Azeez", role: "Backend Developer" },
+  { name: "Suleiman AbdulBasit", role: "Frontend Developer" },
+  { name: "Akorede Oyafemi", role: "UI/UX Designer" },
+  { name: "Akanni Jubril", role: "Content Writer" },
+  { name: "Sodiq Adewole", role: "Project Manager" },
+];
 
 export default function Footer() {
   return (
@@ -123,6 +132,94 @@ export default function Footer() {
                 />
               </svg>
             </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Social Links & Developers Section */}
+      <div className="border-t border-gray-100 bg-gray-50/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex flex-col items-center md:items-start gap-4">
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                Connect With Us
+              </h3>
+              <div className="flex items-center gap-6">
+                <Link
+                  href="https://www.instagram.com/mcanekitistate?igsh=MWMwZHc0ODZjZTdsdA=="
+                  target="_blank"
+                  className="group p-2 rounded-full bg-white shadow-sm border border-gray-100 hover:border-[#E4405F] hover:shadow-md transition-all duration-300"
+                  aria-label="Instagram"
+                >
+                  <Instagram
+                    size={20}
+                    className="text-gray-600 group-hover:text-[#E4405F]"
+                  />
+                </Link>
+                <Link
+                  href="https://www.facebook.com/share/1HAzf18L55/"
+                  target="_blank"
+                  className="group p-2 rounded-full bg-white shadow-sm border border-gray-100 hover:border-[#1877F2] hover:shadow-md transition-all duration-300"
+                  aria-label="Facebook"
+                >
+                  <Facebook
+                    size={20}
+                    className="text-gray-600 group-hover:text-[#1877F2]"
+                  />
+                </Link>
+                <Link
+                  href="https://tiktok.com/@mcanekitistateado"
+                  target="_blank"
+                  className="group p-2 rounded-full bg-white shadow-sm border border-gray-100 hover:border-black hover:shadow-md transition-all duration-300"
+                  aria-label="TikTok"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="20"
+                    height="20"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-gray-600 group-hover:text-black"
+                  >
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center md:items-end gap-2">
+              <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">
+                Crafted by
+              </p>
+              <div className="flex flex-wrap justify-center md:justify-end gap-x-4 gap-y-1">
+                {developers.map((dev, index) => (
+                  <span
+                    key={index}
+                    className="text-sm font-semibold text-gray-700 hover:text-[#1B6B3A] cursor-default transition-colors"
+                  >
+                    {dev.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <p>
+              © {new Date().getFullYear()} MCAN Ekiti State. All rights
+              reserved.
+            </p>
+            <div className="flex items-center gap-4">
+              <Link href="#" className="hover:text-gray-900 transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="#" className="hover:text-gray-900 transition-colors">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </div>

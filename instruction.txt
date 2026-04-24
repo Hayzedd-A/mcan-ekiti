@@ -1,33 +1,88 @@
-** Intro **
-This is a website for the Muslim corpers association of Nigeria.
-
-The website has some main features which are, list of projects, prayer times, events, lodges, galery, each year executives board, new member registration, receive of donations, 
-The website will be having the public pages as available already and also having admin page where all the data will be managed.
-
-Each project will have this properties 
-title, description, projected amount, amount raised, status, location, projected date, 
-
-prayer times will be integrated with any prayer time api
-
-Each events will have these properties
-date, title, description, status, location, image banner, cost, occurence 
-
-executives will have these properties (grouped in years)
-profile pic, name, position, title,
-
-lodges will be having these properties
-title, description, status, location
-
-news will be having these properties
-title, short-description, story, category
-
-
-The donation only display the account number and details, no payment integration for now.
-
-the member registration will only keep their record for now, no extra features on that.
-
-implement and incoporate the admin and backend with the frontend, establishing all the features.
-the admin features:
-** crud operation on projects, events, lodges, news, galery and executives, add and modify account details, view the list of registered members, 
-use mongodb for data storage, and cloudinary for images.
-maintain system design and theme.
+ABOUT US – MCAN EKITI STATE CHAPTER
+The Muslim Corpers Association of Nigeria (MCAN), Ekiti State Chapter, is a state branch of the
+national Muslim corps members’ body established under the National Youth Service Corps
+(NYSC) Scheme.
+It operates in alignment with the national MCAN headquarters in Mabushi, Abuja, serving as a
+faith-based organization committed to Islamic propagation (Da’wah), welfare support,
+leadership development, and community engagement among Muslim corps members in Ekiti
+State.
+HISTORY AND DEVELOPMENT OF MCAN EKITI
+MCAN Ekiti State Chapter traces its roots to a modest gathering of northern Muslim migrants
+and local Muslim leaders who, decades ago, sought to establish a sustainable religious and
+social support system for Muslims residing in Ekiti State.
+What began as informal acts of hospitality, offering shelter, guidance, and spiritual support to
+Muslim travelers, students, and corpers away from home, gradually developed into a structured
+community organization dedicated to Islamic propagation, welfare support, and social cohesion.
+In its early years, the association operated without a permanent office or formal structure. With
+support from Islamic organizations such as Ansar-Ud-Deen, temporary spaces were provided at
+the Ansar-Ud-Deen Mosque in Atikoko, where meetings and coordination took place.
+Despite early challenges such as irregular leadership transitions due to the short NYSC service
+cycle and funding, the association gradually evolved into a more organized structure with
+improved continuity, documentation, and leadership succession.
+OUR PURPOSE AND PHILOSOPHY
+MCAN Ekiti was founded with the belief that Muslim corps members and community youths
+should not only serve the nation through the National Youth Service Corps (NYSC) scheme but
+also serve as ambassadors of faith, character, and community development, ensuring that they
+leave every community better than they found it.
+AIM AND OBJECTIVES
+MCAN Ekiti operates in line with the national objectives of MCAN, which include:
+•
+ Coordinating Muslim corps members in Ekiti State
+•
+ Promoting Islamic education and the correct understanding of Islam
+•
+ Supporting Da’wah activities within host communities
+•
+ Defending the rights and welfare of Muslim corps members
+•
+ Collaborating with Islamic and community organizations for development
+ACTIVITIES AND PROGRAMMES
+MCAN Ekiti participates in and implements MCAN programmes, which include:
+Orientation Camp Activities
+•
+ Identification and mobilization of Muslim corps members
+•
+ Da’wah lectures and Islamic reminders
+•
+ Qur’an recitation and memorization sessions
+•
+ Welfare and support services within the camp
+Post-Orientation Activities
+•
+ Weekly Qur’an and knowledge circles
+•
+ Da’wah lectures and community outreach
+•
+ Educational support and tutorial sessions
+•
+ Community development initiatives
+IMPACT AND ACHIEVEMENTS
+MCAN Ekiti has contributed significantly to the development of Muslim corps members and the
+wider community in Ekiti State through:
+•
+ Strengthening Islamic identity among corps members
+•
+ Supporting Da’wah efforts in host communities
+•
+ Promoting peaceful interfaith coexistence
+•
+ Mentoring Muslim youths in leadership and moral conduct
+•
+ Improving welfare coordination for Muslim corps members
+The association has also contributed to correcting misconceptions about Islam through
+consistent engagement and education in diverse communities.
+OUR CHALLENGES
+Like the national body, MCAN Ekiti faces challenges in two key areas:
+1. Financial Constraints
+Limited funding affects the maintenance and expansion of facilities such as lodges, Da’wah
+outreach, and welfare support systems.
+2. MCAN Lodges
+Despite its growth, MCAN continues to face challenges in establishing lodges across the state.
+These lodges are essential in providing safe and supportive environments for Muslim corps
+members, and expanding them remains a major priority for the Association.
+OUR LEGACY & FUTURE
+Today, MCAN Ekiti stands as a respected and organized Muslim community institution within the
+state.
+With strong leadership and active youth participation, MCAN Ekiti is committed to
+strengthening unity, deepening Islamic knowledge, and building a legacy of service for future
+generations.

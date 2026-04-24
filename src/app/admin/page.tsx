@@ -25,14 +25,14 @@ async function getStat(endpoint: string): Promise<number> {
 }
 
 export default async function AdminDashboard() {
-  const [projects, events, executives, lodges, news, gallery, members] =
+  const [projects, events, executives, lodges, news, leadership, members] =
     await Promise.all([
       getStat("projects"),
       getStat("events"),
       getStat("executives"),
       getStat("lodges"),
       getStat("news"),
-      getStat("gallery"),
+      getStat("leadership"),
       getStat("members"),
     ]);
 
@@ -73,10 +73,10 @@ export default async function AdminDashboard() {
       color: "bg-rose-50 text-rose-600",
     },
     {
-      label: "Gallery Images",
-      value: gallery,
-      icon: ImageIcon,
-      href: "/admin/gallery",
+      label: "Leadership",
+      value: leadership,
+      icon: Users,
+      href: "/admin/leadership",
       color: "bg-indigo-50 text-indigo-600",
     },
     {
@@ -157,7 +157,7 @@ export default async function AdminDashboard() {
             { label: "Add Event", href: "/admin/events" },
             { label: "Add Executive", href: "/admin/executives" },
             { label: "Add News", href: "/admin/news" },
-            { label: "Upload Gallery", href: "/admin/gallery" },
+            { label: "Add Leadership", href: "/admin/leadership" },
           ].map(({ label, href }) => (
             <Link
               key={href}

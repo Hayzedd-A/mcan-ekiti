@@ -17,6 +17,7 @@ import {
   LogOut,
   Menu,
   X,
+  ShieldCheck,
   Settings as SettingsIcon,
 } from "lucide-react";
 
@@ -25,9 +26,9 @@ const navLinks = [
   { href: "/admin/projects", label: "Projects", icon: FolderOpen },
   { href: "/admin/events", label: "Events", icon: Calendar },
   { href: "/admin/executives", label: "Executives", icon: Users },
+  { href: "/admin/leadership", label: "Leadership", icon: ShieldCheck },
   { href: "/admin/lodges", label: "Lodges", icon: Building2 },
   { href: "/admin/news", label: "News", icon: Newspaper },
-  { href: "/admin/gallery", label: "Gallery", icon: ImageIcon },
   { href: "/admin/members", label: "Members", icon: UserCheck },
   { href: "/admin/donation-account", label: "Donation Account", icon: Heart },
   { href: "/admin/contact-info", label: "Contact Info", icon: SettingsIcon },
