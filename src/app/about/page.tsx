@@ -15,6 +15,7 @@ import {
   Heart,
   Handshake,
   CheckCircle,
+  Map,
 } from "lucide-react";
 
 const LGA = [
@@ -180,22 +181,6 @@ export default async function AboutPage() {
                 association evolved into an organized structure with improved
                 continuity and leadership succession.
               </p>
-              <p>
-                For a long time, activities across the Local Government Areas
-                were carried out independently, with little or no coordination
-                between them. However, the association has recently succeeded in
-                re-establishing itself by bringing these chapters together;
-                fostering unity and coordinated participation across the
-                following Local Government Areas:{" "}
-                <span className="flex flex-wrap justify-between gap-4">
-                  {LGA.map((lga) => (
-                    <div key={lga} className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-600" />
-                      <span className="text-gray-700">{lga}</span>
-                    </div>
-                  ))}
-                </span>
-              </p>
             </div>
           </div>
         </section>
@@ -287,6 +272,35 @@ export default async function AboutPage() {
                 <p className="text-gray-700 font-medium">{obj.text}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Local Government Areas */}
+        <section>
+          <div className="">
+            <h2
+              className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3 font-display"
+              style={{ fontFamily: "Outfit, sans-serif" }}
+            >
+              <Map className="w-8 h-8 text-green-600" />
+              MCAN Ekiti LGAs(Local Government Areas)
+            </h2>
+            <p>
+              For a long time, activities across the Local Government Areas were
+              carried out independently, with little or no coordination between
+              them. However, the association has recently succeeded in
+              re-establishing itself by bringing these chapters together;
+              fostering unity and coordinated participation across the following
+              Local Government Areas:{" "}
+              <span className="flex flex-wrap gap-4">
+                {LGA.map((lga) => (
+                  <div key={lga} className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-600" />
+                    <span className="text-gray-700">{lga}</span>
+                  </div>
+                ))}
+              </span>
+            </p>
           </div>
         </section>
 
