@@ -20,7 +20,11 @@ const footerLinks = {
 };
 
 const developers = [
-  { name: "Adebayo Azeez", role: "Backend Developer" },
+  {
+    name: "Adebayo Azeez",
+    email: "adebayoazeez37@yahoo.com",
+    role: "Backend Developer",
+  },
   { name: "Suleiman AbdulBasit", role: "Frontend Developer" },
   { name: "Akorede Oyafemi", role: "UI/UX Designer" },
   { name: "Akanni Jubril", role: "Content Writer" },
@@ -196,12 +200,14 @@ export default function Footer() {
               </p>
               <div className="flex flex-wrap justify-center md:justify-end gap-x-4 gap-y-1">
                 {developers.map((dev, index) => (
-                  <span
-                    key={index}
-                    className="text-sm font-semibold text-gray-700 hover:text-[#1B6B3A] cursor-default transition-colors"
-                  >
-                    {dev.name}
-                  </span>
+                  <Link href={`mailto:${dev.email}`}>
+                    <span
+                      key={index}
+                      className="text-sm font-semibold text-gray-700 hover:text-[#1B6B3A] cursor-default transition-colors"
+                    >
+                      {dev.name}
+                    </span>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -30,7 +30,7 @@ export default function ProjectCard({
       <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
         <div className="relative h-48 w-full">
           <Image
-            src={imgSrc}
+            src={project.image || imgSrc}
             alt={project.title}
             fill
             className="object-cover"
@@ -69,7 +69,12 @@ export default function ProjectCard({
   return (
     <div className="bg-white rounded-xl overflow-hidden">
       <div className="relative h-44 w-full rounded-xl overflow-hidden">
-        <Image src={imgSrc} alt={project.title} fill className="object-cover" />
+        <Image
+          src={project.image || imgSrc}
+          alt={project.title}
+          fill
+          className="object-cover"
+        />
       </div>
       <div className="pt-3 pb-1">
         <h3

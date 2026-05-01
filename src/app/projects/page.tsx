@@ -17,6 +17,19 @@ async function getProjects(): Promise<IProject[]> {
   }
 }
 
+async function getSettings() {
+  try {
+    const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/contact`, {
+      cache: "no-store",
+    });
+    const data = await res.json();
+    return data.success ? data.data : null;
+  } catch (error) {
+    console.error("Failed to fetch settings:", error);
+    return null;
+  }
+}
+
 const STATUS_COLORS: Record<string, string> = {
   Ongoing: "bg-[#1B6B3A] text-white",
   Completed: "bg-blue-600 text-white",
@@ -28,6 +41,7 @@ const FALLBACK_IMG =
 
 export default async function ProjectsPage() {
   const projects = await getProjects();
+  const settings = await getSettings();
 
   return (
     <div className="min-h-screen">
@@ -43,7 +57,7 @@ export default async function ProjectsPage() {
           maintain the completed ones.
         </p>
         <p className="text-[#1B6B3A] text-sm font-medium mb-8">
-          For enquiries call: 0800 000 0000 / 479
+          For enquiries call: {settings?.phone || "0800 000 0000"}
         </p>
 
         {projects.length === 0 ? (

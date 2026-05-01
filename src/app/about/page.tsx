@@ -14,7 +14,20 @@ import {
   BookOpen,
   Heart,
   Handshake,
+  CheckCircle,
 } from "lucide-react";
+
+const LGA = [
+  "Ado-Ekiti",
+  "Efon",
+  "Ijero",
+  "Ikere",
+  "Ikole",
+  "Irepodun/Ifelodun",
+  "Ise/Orun",
+  "Moba",
+  "Oye",
+];
 
 async function getLeadership(): Promise<ILeadership[]> {
   try {
@@ -36,7 +49,7 @@ export default async function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* 🔹 TOP TABS */}
-      <div className="border-b bg-white sticky top-0 z-40">
+      {/* <div className="border-b bg-white sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center gap-8 text-sm font-medium">
           <a
             href="#about"
@@ -69,7 +82,7 @@ export default async function AboutPage() {
             Leadership
           </a>
         </div>
-      </div>
+      </div> */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
         {/* HERO SECTION */}
@@ -142,10 +155,12 @@ export default async function AboutPage() {
             </h2>
             <div className="space-y-6 text-gray-600 leading-relaxed">
               <p>
-                MCAN Ekiti State Chapter traces its roots to a modest gathering
-                of northern Muslim migrants and local Muslim leaders who,
-                decades ago, sought to establish a sustainable religious and
-                social support system for Muslims residing in Ekiti State.
+                The history of MCAN in Ekiti State dates back to 1996, the year
+                the state was created. Its first Ameer, Mallam Umar Abbass
+                Jahun, a Northerner from Zaria, was appointed at the NYSC
+                orientation camp in Lafiagi, Kwara State. The camp was later
+                relocated to Efon-Alaaye, before finally settling at its
+                permanent site in Ise-Orun, Emure-Ekiti.
               </p>
               <div className="relative pl-8 border-l-2 border-green-100 py-2">
                 <div className="absolute left-[-9px] top-4 w-4 h-4 bg-green-600 rounded-full border-4 border-white"></div>
@@ -153,16 +168,33 @@ export default async function AboutPage() {
                   "What began as informal acts of hospitality, offering shelter,
                   guidance, and spiritual support to Muslim travelers, students,
                   and corpers away from home, gradually developed into a
-                  structured community organization."
+                  structured community organization dedicated to Islamic
+                  propagation, welfare support, and social cohesion."
                 </p>
               </div>
               <p>
                 In its early years, the association operated without a permanent
                 office. With support from Islamic organizations such as
                 Ansar-Ud-Deen, temporary spaces were provided at the
-                Ansar-Ud-Deen Mosque in Atikoko. Despite early challenges, the
+                Ansar-Ud-Deen Mosque in Atikankan. Despite early challenges, the
                 association evolved into an organized structure with improved
                 continuity and leadership succession.
+              </p>
+              <p>
+                For a long time, activities across the Local Government Areas
+                were carried out independently, with little or no coordination
+                between them. However, the association has recently succeeded in
+                re-establishing itself by bringing these chapters together;
+                fostering unity and coordinated participation across the
+                following Local Government Areas:{" "}
+                <span className="flex flex-wrap justify-between gap-4">
+                  {LGA.map((lga) => (
+                    <div key={lga} className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600" />
+                      <span className="text-gray-700">{lga}</span>
+                    </div>
+                  ))}
+                </span>
               </p>
             </div>
           </div>

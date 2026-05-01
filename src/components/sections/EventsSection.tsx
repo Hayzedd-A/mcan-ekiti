@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { IEvent } from "@/models/Event";
+import EventDetailModal from "@/components/ui/EventDetailModal";
 
 interface EventsSectionProps {
   events: IEvent[];
@@ -13,6 +14,7 @@ export default function EventsSection({ events }: EventsSectionProps) {
   const [slide, setSlide] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(upcomingEvents[slide]);
   const totalSlides = upcomingEvents.length;
+  const [selectedEvent, setSelectedEvent] = useState<IEvent | null>(null);
 
   useEffect(() => {
     setCurrentSlide(upcomingEvents[slide]);
@@ -34,7 +36,7 @@ export default function EventsSection({ events }: EventsSectionProps) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Events List */}
-        <div className="lg:col-span-2 space-y-2">
+        <div className="lg:col-span-2 space-y-2 order-2 lg:order-1">
           {events.map((event) => (
             <div
               key={event._id}
@@ -45,9 +47,6 @@ export default function EventsSection({ events }: EventsSectionProps) {
                 <div className="text-xs text-gray-500">
                   {new Date(event.date).toDateString()}
                 </div>
-                {/* <div className="text-xs text-gray-400">
-                  {new Date(event.date).getDay()}
-                </div> */}
               </div>
 
               {/* Divider */}
@@ -64,7 +63,10 @@ export default function EventsSection({ events }: EventsSectionProps) {
               </div>
 
               {/* View Details */}
-              <button className="flex-shrink-0 border border-[#1B6B3A] text-[#1B6B3A] px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-[#e8f5ee] transition-colors">
+              <button
+                onClick={() => setSelectedEvent(event)}
+                className="flex-shrink-0 border border-[#1B6B3A] text-[#1B6B3A] px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-[#e8f5ee] transition-colors"
+              >
                 View details
               </button>
             </div>
@@ -72,7 +74,7 @@ export default function EventsSection({ events }: EventsSectionProps) {
         </div>
 
         {/* Upcoming Events Card */}
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-1 order-1 lg:order-2">
           <div className="bg-white border border-gray-100 rounded-xl overflow-hidden h-full">
             <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
               <span className="text-sm font-semibold text-gray-700">
@@ -98,7 +100,10 @@ export default function EventsSection({ events }: EventsSectionProps) {
             </div>
             {currentSlide && (
               <>
-                <div className="relative h-44 bg-gray-100">
+                <div
+                  onClick={() => setSelectedEvent(currentSlide)}
+                  className="relative h-44 bg-gray-100 cursor-pointer"
+                >
                   <Image
                     src={currentSlide?.imageBanner || ""}
                     alt="Upcoming Event"
@@ -114,6 +119,12 @@ export default function EventsSection({ events }: EventsSectionProps) {
           </div>
         </div>
       </div>
+
+      {/* Event Detail Modal */}
+      <EventDetailModal
+        event={selectedEvent}
+        onClose={() => setSelectedEvent(null)}
+      />
     </section>
   );
 }
