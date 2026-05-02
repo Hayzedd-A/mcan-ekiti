@@ -8,6 +8,11 @@ import EventDetailModal from "@/components/ui/EventDetailModal";
 interface EventsSectionProps {
   events: IEvent[];
 }
+const STATUS_COLORS: Record<string, string> = {
+  Upcoming: "bg-green-100 text-[#1B6B3A]",
+  Ongoing: "bg-blue-100 text-blue-700",
+  Completed: "bg-gray-100 text-gray-600",
+};
 
 export default function EventsSection({ events }: EventsSectionProps) {
   const upcomingEvents = events.filter((event) => event.status === "Upcoming");
@@ -43,10 +48,15 @@ export default function EventsSection({ events }: EventsSectionProps) {
               className="flex items-center gap-4 bg-white border border-gray-100 rounded-xl px-4 py-3 hover:border-[#1B6B3A]/30 transition-colors"
             >
               {/* Date */}
-              <div className="flex-shrink-0 w-16">
+              <div className="flex-shrink-0 w-20">
                 <div className="text-xs text-gray-500">
                   {new Date(event.date).toDateString()}
                 </div>
+                <span
+                  className={`text-xs px-2 py-0.5 rounded-full font-medium ${STATUS_COLORS[event.status]}`}
+                >
+                  {event.status}
+                </span>
               </div>
 
               {/* Divider */}
