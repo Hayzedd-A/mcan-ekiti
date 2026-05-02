@@ -30,11 +30,8 @@ export async function uploadImage(
 
 export async function deleteImage(imgUrl: string): Promise<void> {
   try {
-    console.log("image url: ", imgUrl);
     const publicId = extractPublicId(imgUrl);
-    console.log("public id: ", publicId);
-    const deleteResponse = await cloudinary.uploader.destroy(publicId);
-    console.log("delete response: ", deleteResponse);
+    await cloudinary.uploader.destroy(publicId);
   } catch (e) {
     console.error("delete image error: ", e);
   }
