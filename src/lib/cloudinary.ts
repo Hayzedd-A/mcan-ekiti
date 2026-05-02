@@ -29,16 +29,31 @@ export async function uploadImage(
 }
 
 export async function deleteImage(imgUrl: string): Promise<void> {
-  const publicId = extractPublicId(imgUrl);
-  await cloudinary.uploader.destroy(publicId);
+  try {
+    console.log("image url: ", imgUrl);
+    const publicId = extractPublicId(imgUrl);
+    console.log("public id: ", publicId);
+    const deleteResponse = await cloudinary.uploader.destroy(publicId);
+    console.log("delete response: ", deleteResponse);
+  } catch (e) {
+    console.error("delete image error: ", e);
+  }
 }
 
 export function extractPublicId(url: string): string {
-  // e.g. https://res.cloudinary.com/cloud/image/upload/v123/folder/name.jpg
-  const parts = url.split("/");
-  const filename = parts[parts.length - 1].split(".")[0];
-  const folder = parts[parts.length - 2];
-  return `${folder}/${filename}`;
+  const uploadIndex = url.indexOf("/upload/");
+  if (uploadIndex === -1) return "";
+
+  let path = url.substring(uploadIndex + 8); // after '/upload/'
+
+  // Remove version if present (e.g. v12345/)
+  if (path.startsWith("v")) {
+    const firstSlash = path.indexOf("/");
+    path = path.substring(firstSlash + 1);
+  }
+
+  // Remove file extension
+  return path.replace(/\.[^/.]+$/, "");
 }
 
 export default cloudinary;
