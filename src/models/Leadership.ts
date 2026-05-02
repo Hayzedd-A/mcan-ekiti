@@ -4,6 +4,7 @@ export interface ILeadership {
   _id: string;
   name: string;
   position: string;
+  title?: string;
   image?: string;
   order: number;
   createdAt: Date;
@@ -14,10 +15,11 @@ const LeadershipSchema = new Schema<ILeadership>(
   {
     name: { type: String, required: true },
     position: { type: String, required: true },
+    title: { type: String, required: false },
     image: { type: String },
     order: { type: Number, default: 0 },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Leadership =
