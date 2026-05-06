@@ -105,7 +105,7 @@ export default function Leadership() {
         ) : (
           <div className="col-span-full py-20 text-center bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
             <p className="text-gray-400">
-              Our leadership profiles will be updated soon.
+              Our leadership profile will be updated soon.
             </p>
           </div>
         )}
