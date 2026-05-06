@@ -1,12 +1,10 @@
-"use client";
-
 import { IEvent } from "@/models/Event";
 import { NEXT_PUBLIC_BASE_URL } from "@/config/constants";
 import Events from "@/components/sections/Events";
 
 async function getEvents(): Promise<IEvent[]> {
   try {
-    const res = await fetch(`/api/events`, {
+    const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/events`, {
       cache: "no-store",
     });
     if (!res.ok) return [];
