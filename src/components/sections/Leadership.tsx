@@ -11,7 +11,7 @@ export default function Leadership() {
   async function getLeadership(): Promise<ILeadership[]> {
     console.log("getting leadership");
     try {
-      const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/leadership`, {
+      const res = await fetch(`/api/leadership`, {
         next: { revalidate: 3600 },
       });
       if (!res.ok) throw new Error("Failed to fetch");

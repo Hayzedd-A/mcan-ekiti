@@ -20,7 +20,7 @@ async function getProjects(): Promise<IProject[]> {
 async function getSettings() {
   try {
     const res = await fetch(`${NEXT_PUBLIC_BASE_URL}/api/contact`, {
-      cache: "no-store",
+      // cache: "no-store",
     });
     const data = await res.json();
     return data.success ? data.data : null;
