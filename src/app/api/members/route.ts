@@ -32,7 +32,43 @@ export async function GET(req: NextRequest) {
   const admin = getAdminFromRequest(req);
   if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  const { searchParams } = new URL(req.url);
+  const search = searchParams.get("search") || "";
+  const page = parseInt(searchParams.get("page") || "1");
+  const limit = parseInt(searchParams.get("limit") || "20");
+  const skip = (page - 1) * limit;
+
   await connectDB();
-  const members = await MemberModel.find().sort({ registeredAt: -1 });
-  return NextResponse.json({ success: true, data: members });
+
+  // Build query
+  const query: any = {};
+  if (search) {
+    const searchRegex = new RegExp(search, "i");
+    query.$or = [
+      { fullName: searchRegex },
+      { email: searchRegex },
+      { stateCode: searchRegex },
+      { lga: searchRegex },
+      { ppa: searchRegex },
+    ];
+  }
+
+  const [members, total] = await Promise.all([
+    MemberModel.find(query)
+      .sort({ registeredAt: -1 })
+      .skip(skip)
+      .limit(limit),
+    MemberModel.countDocuments(query)
+  ]);
+
+  return NextResponse.json({ 
+    success: true, 
+    data: members,
+    pagination: {
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit)
+    }
+  });
 }
