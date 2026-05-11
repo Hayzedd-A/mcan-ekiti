@@ -11,7 +11,7 @@ export default function AdminMembersPage() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const limit = 5;
+  const limit = 20;
 
   // Debounce search input
   useEffect(() => {
