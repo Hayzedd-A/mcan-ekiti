@@ -22,7 +22,7 @@ const footerLinks = {
 const developers = [
   {
     name: "Adebayo Azeez",
-    email: "adebayoazeez37@yahoo.com",
+    link: "https://hayzedd-devhub.vercel.app",
     role: "Backend Developer",
   },
   { name: "Suleiman AbdulBasit", role: "Frontend Developer" },
@@ -196,14 +196,14 @@ export default function Footer() {
 
             <div className="flex flex-col items-center md:items-end gap-2">
               <p className="text-xs font-medium text-gray-400 uppercase tracking-widest">
-                Crafted by
+                Developed by
               </p>
               <div className="flex flex-wrap justify-center md:justify-end gap-x-4 gap-y-1">
                 {developers.map((dev, index) => (
-                  <Link href={`mailto:${dev.email}`}>
+                  <Link href={dev.link || "#"} target="_blank">
                     <span
                       key={index}
-                      className="text-sm font-semibold text-gray-700 hover:text-[#1B6B3A] cursor-default transition-colors"
+                      className="text-sm font-semibold text-gray-700 hover:text-[#1B6B3A] transition-colors"
                     >
                       {dev.name}
                     </span>
